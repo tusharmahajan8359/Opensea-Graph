@@ -1,0 +1,21 @@
+type Collection @entity {
+  id: ID!
+  name: String!
+  collectionId: BigInt!
+  creator: Bytes!
+  collectionLink: String!
+  nfts: [BigInt!]
+}
+type Token @entity {
+  id: ID!
+  itemId: BigInt!
+  tokenURI: String!
+}
+type NFT @entity {
+  id: ID!
+  itemId: BigInt!
+  nftName: String!
+  collectionId: BigInt!
+  creator: Bytes!
+  nftLink: String!
+}

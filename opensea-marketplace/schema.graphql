@@ -1,0 +1,44 @@
+type NftTransfer @entity {
+  id: ID!
+  from: Bytes!
+  to: Bytes!
+  tokenId: BigInt! # uint256
+}
+type ItemList @entity {
+  id: ID!
+  tokenId: BigInt! # uint256
+  price: BigInt! # uint
+  status: Boolean!
+}
+type Listing @entity {
+  id: ID!
+  tokenId: BigInt! # uint256
+  price: BigInt! # uint
+  time: BigInt
+}
+
+type MarketSaleCreat @entity {
+  id: ID!
+  tokenId: BigInt! # uint256
+  buyer: Bytes! #address
+}
+
+type Offer @entity {
+  id: ID!
+  offerId: BigInt! # uint
+  tokenId: BigInt! # uint256
+  offerPrice: BigInt! # uint
+  offerSender: Bytes! #address
+  status: Boolean! #status
+}
+type OfferAccept @entity {
+  id: ID!
+  tokenId: BigInt! # uint256
+  offerPrice: BigInt! # uint
+}
+
+type TokenOffer @entity {
+  id: ID!
+  tokenId: BigInt! # uint
+  offerIds: [BigInt!]!
+}

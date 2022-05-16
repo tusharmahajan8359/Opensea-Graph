@@ -1,0 +1,39 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CoreCollection
+    network: rinkeby
+    source:
+      address: "0xff4A54cb96A154a9E15c02d28df3477d14DAb375"
+      abi: CoreCollection
+      startBlock: 10667313
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - CollectionCreated
+        - NFTCreated
+        - TokenCreated
+        - Transfer
+      abis:
+        - name: CoreCollection
+          file: CoreCollection/abis/CoreCollection.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: CollectionCreated(string,uint256,address,string)
+          handler: handleCollectionCreated
+        - event: NFTCreated(uint256,string,uint256,address,string)
+          handler: handleNFTCreated
+        - event: TokenCreated(uint256,string)
+          handler: handleTokenCreated
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: CoreCollection/CoreCollection.wasm

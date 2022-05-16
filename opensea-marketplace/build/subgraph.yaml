@@ -1,0 +1,45 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Market
+    network: rinkeby
+    source:
+      address: "0xFbAe98bb4b002103acD9D0cCd90fCfdEfE1f219d"
+      abi: Market
+      startBlock: 10667312
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - CancelListing
+        - ItemListed
+        - MarketSaleCreated
+        - OfferAccepted
+        - OfferCanceled
+        - OfferSent
+        - TransferNFT
+        - priceLowered
+      abis:
+        - name: Market
+          file: Market/abis/Market.json
+      eventHandlers:
+        - event: CancelListing(uint256,bool)
+          handler: handleCancelListing
+        - event: ItemListed(uint256,uint256,bool)
+          handler: handleItemListed
+        - event: MarketSaleCreated(uint256,address)
+          handler: handleMarketSaleCreated
+        - event: OfferAccepted(uint256,uint256)
+          handler: handleOfferAccepted
+        - event: OfferCanceled(uint256,uint256,bool)
+          handler: handleOfferCanceled
+        - event: OfferSent(uint256,uint256,uint256,address,bool)
+          handler: handleOfferSent
+        - event: TransferNFT(address,address,uint256)
+          handler: handleTransferNFT
+        - event: priceLowered(uint256,uint256)
+          handler: handlepriceLowered
+      file: Market/Market.wasm
